@@ -71,6 +71,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\GGJSpyHeart - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\GGJSpyHeart - Web Deploy.pubxml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
