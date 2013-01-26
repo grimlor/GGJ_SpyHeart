@@ -11,7 +11,7 @@ namespace SpyHeart
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "FindMeService" in code, svc and config file together.
     public class FindMeService : IFindMeService
     {
-        public string GetData(int value)
+        public string AmIClose(string value)
         {
             return string.Format("You entered: {0}", value);
         }
