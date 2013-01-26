@@ -1,32 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace SpyHeart
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "FindMeService" in code, svc and config file together.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
+        ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class FindMeService : IFindMeService
     {
-        public string AmIClose(string value)
+        private static IList<Player> _players;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FindMeService"/> class.
+        /// </summary>
+        public FindMeService()
         {
-            return string.Format("You entered: {0}", value);
+            _players = new List<Player>();
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        /// <summary>
+        /// Registers a user to a game.
+        /// </summary>
+        /// <param name="guidGameId">The game id.</param>
+        /// <param name="longLat">The long lat.</param>
+        /// <param name="longLng">The long LNG.</param>
+        /// <returns></returns>
+        public Player Register(string guidGameId, string longLat, string longLng)
         {
-            if (composite == null)
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Submit current position.
+        /// </summary>
+        /// <param name="guidGameId">The game id.</param>
+        /// <param name="guidUserId">The user id.</param>
+        /// <param name="intLat">The latitude.</param>
+        /// <param name="intLng">The longitude.</param>
+        /// <returns></returns>
+        public IList<Player> HereIAm(string guidGameId, string guidUserId, string intLat, string intLng)
+        {
+            List<Player> playersInGame;
+
+            try
             {
-                throw new ArgumentNullException("composite");
+                var gameId = new Guid(guidGameId);
+                var userId = new Guid(guidUserId);
+                var lat = long.Parse(intLat);
+                var lng = long.Parse(intLng);
+
+                Player player;
+                if (!(_players.Any(p => p.GameId.Equals(gameId) && p.UserId.Equals(userId))))
+                {
+                    player = new Player(gameId, userId, lat, lng);
+                    _players.Add(player);
+                }
+                else
+                {
+                    player = _players.Single(p => p.GameId.Equals(gameId));
+                    player.Latitude = lat;
+                    player.Longitude = lng;
+                }
+
+                playersInGame = _players.Where(p => p.GameId.Equals(gameId)).ToList();
             }
-            if (composite.BoolValue)
+            catch (Exception)
             {
-                composite.StringValue += "Suffix";
+                Console.WriteLine("Invalid parameters were used.");
+                playersInGame = new List<Player>();
             }
-            return composite;
+
+            return playersInGame;
+        }
+
+
+        public IList<Game> GetServers()
+        {
+            throw new NotImplementedException();
         }
     }
 }
