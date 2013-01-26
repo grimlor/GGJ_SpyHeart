@@ -161,3 +161,12 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+
+#############
+## Unity
+#############
+/Client/Temp
+/Client/Library
+/Client/Assembly-CSharp.csproj.user
+/Client/Assembly-CSharp-vs.csproj.user
