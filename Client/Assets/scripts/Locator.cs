@@ -53,13 +53,13 @@ public class Locator : MonoBehaviour {
 	    }
 	    // Access granted and location value could be retrieved
 	    else {
-	        _displayLabel.text = 
-				"Lat: " + Input.location.lastData.latitude + "\n" +
-	            "Long: " + Input.location.lastData.longitude + "\n" +
-	            "Alt: " + Input.location.lastData.altitude + "\n" +
-	            "Accur: " + Input.location.lastData.horizontalAccuracy + "\n" +
-	            "Time: " + Input.location.lastData.timestamp + "\n" + 
-				"LoopTime: " + Time.time;
+	        //_displayLabel.text = 
+				//"Lat: " + Input.location.lastData.latitude + "\n" +
+	            //"Long: " + Input.location.lastData.longitude + "\n" +
+	            //"Alt: " + Input.location.lastData.altitude + "\n" +
+	            //"Accur: " + Input.location.lastData.horizontalAccuracy + "\n" +
+	            //"Time: " + Input.location.lastData.timestamp + "\n" + 
+				//"LoopTime: " + Time.time;
 	    }	
 	
 	    StartCoroutine(SendLocation());		
@@ -71,19 +71,20 @@ public class Locator : MonoBehaviour {
 	
     IEnumerator SendLocation()
     {
-		var form = new WWWForm();
+		//var form = new WWWForm(); 
 		
         if (Application.internetReachability == NetworkReachability.NotReachable)
             yield break;
 
-        var url = "http://www.mygamehud.com/api/v2/";
-        url += method;
+        var url = "http://169.254.140.85/SpyHeart/FindMeService/HereIAm/"; //<guidGameId>/<guidUserId>/<longLat>/<longLng>";
+        url += "9ef0941f-38c4-448d-ad76-7a8c59837535" + "/";
+        url += "6c2711a9-da5b-42da-ad06-21f9fda2c97a" + "/";
+		url += Input.location.lastData.latitude.ToString() + "/";
+		url += Input.location.lastData.longitude.ToString();
 
-        form.AddField("gh_api_key", gameApiKey);
-		form.AddField("gh_device_identifier", DeviceIdentifier);
-		form.AddField("gh_submitted_at", DateTime.Now.ToString("O"));
+        //form.AddField("gh_api_key", gameApiKey);
 
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(url);
         yield return www;
 
         // WWW does not react to HTTP status codes, only transport errors?
@@ -93,7 +94,7 @@ public class Locator : MonoBehaviour {
         }
         else 
         {
-
+			_displayLabel.text = www.ToString();
         }
     }	
 }
