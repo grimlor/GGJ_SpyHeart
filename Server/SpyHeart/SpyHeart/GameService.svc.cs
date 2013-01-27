@@ -98,7 +98,7 @@ namespace SpyHeart
                         {
                             _currentGame.TrackersScore++;
                         }
-                        _currentGame.CurGameState = _currentGame.TargetScore + _currentGame.TrackersScore == 3
+                        _currentGame.CurGameState = _currentGame.TargetScore + _currentGame.TrackersScore == 5 || _currentGame.TargetScore == 3
                             ? GameState.GameEnded
                             : GameState.ActiveHunt;
                         break;
