@@ -2,11 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Locator.cs">
     <Files>
-      <File FileName="Assets\scripts\Locator.cs" Line="93" Column="5" />
+      <File FileName="Assets\scripts\Locator.cs" Line="73" Column="1" />
       <File FileName="Assets\scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\StartMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\GameManager.cs" Line="6" Column="35" />
-      <File FileName="Assets\scripts\MiniJSON.cs" Line="8" Column="4" />
+      <File FileName="Assets\scripts\StartMenu.cs" Line="22" Column="3" />
+      <File FileName="Assets\scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\MiniJSON.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\PointDistance.cs" Line="23" Column="38" />
+      <File FileName="Assets\scripts\GameScene.cs" Line="21" Column="5" />
+      <File FileName="Assets\scripts\Gui.cs" Line="11" Column="1" />
+      <File FileName="..\..\..\..\Desktop\old_initialize.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

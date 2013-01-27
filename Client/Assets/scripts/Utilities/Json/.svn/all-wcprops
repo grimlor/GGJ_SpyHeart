@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/togetherplatform/!svn/ver/181/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json
+END
+ListHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/togetherplatform/!svn/ver/181/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/ListHelper.cs
+END
+JsonDeserializer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/togetherplatform/!svn/ver/181/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/JsonDeserializer.cs
+END
+JsonReader.cs
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/togetherplatform/!svn/ver/170/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/JsonReader.cs
+END
+JsonTokens.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/togetherplatform/!svn/ver/96/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/JsonTokens.cs
+END
+JsonSerializer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/togetherplatform/!svn/ver/96/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/JsonSerializer.cs
+END
+SerializeIncludingBaseAttribute.cs
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/togetherplatform/!svn/ver/96/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/SerializeIncludingBaseAttribute.cs
+END
+JsonWriter.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/togetherplatform/!svn/ver/96/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/JsonWriter.cs
+END
+Converter.cs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/togetherplatform/!svn/ver/167/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/Converter.cs
+END
+JsonException.cs
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/togetherplatform/!svn/ver/96/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/JsonException.cs
+END
+ReflectionHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/togetherplatform/!svn/ver/181/ClientAPIs/Unity%20C-Sharp/v1/TogetherProject/Utilities/Json/ReflectionHelper.cs
+END
