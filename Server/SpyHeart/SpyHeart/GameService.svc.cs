@@ -23,6 +23,21 @@ namespace SpyHeart
             };
         }
 
+        public bool Setup(string password)
+        {
+            var isGameReset = false;
+            if (password == "r3s3tGam3")
+            {
+                _currentGame = new PlayersReport
+                {
+                    PlayerLocations = new List<PlayerLocation>(),
+                    CurGameState = GameState.PreLaunch
+                };
+                isGameReset = true;
+            }
+            return isGameReset;
+        }
+
         public PlayerLocation Register(string longLat, string longLng)
         {
             var lat = double.Parse(longLat.Replace('d', '.'));
@@ -55,19 +70,20 @@ namespace SpyHeart
                 {
                     case GameState.PreLaunch:
                         var random = new Random();
-                        _currentGame.TargetPlayerGuid = _currentGame.PlayerLocations[random.Next()].UserId;
+                        _currentGame.TargetPlayerGuid = _currentGame.PlayerLocations[random.Next(0, _currentGame.PlayerLocations.Count - 1)].UserId;
                         _currentGame.CurGameState = GameState.CountTo100;
                         _currentGame.StateTimeExpiration = DateTime.Now.AddMinutes(2);
                         break;
                     case GameState.CountTo100:
                         _currentGame.CurGameState = GameState.ActiveHunt;
-                        _currentGame.StateTimeExpiration = DateTime.Now.AddMinutes(2);
+                        _currentGame.StateTimeExpiration = DateTime.Now.AddDays(1);
                         break;
                     case GameState.ActiveHunt:
                         _currentGame.CurGameState = GameState.GameEnded;
                         break;
                     case GameState.HunkerDown:
                         _currentGame.CurGameState = GameState.ActiveHunt;
+                        _currentGame.StateTimeExpiration = DateTime.Now.AddMinutes(2);
                         break;
                 }
             }
