@@ -50,7 +50,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FindMeService.svc" />
+    <Content Include="GameService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -60,12 +60,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FindMeService.svc.cs">
-      <DependentUpon>FindMeService.svc</DependentUpon>
+    <Compile Include="GameService.svc.cs">
+      <DependentUpon>GameService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IFindMeService.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="IGameService.cs" />
+    <Compile Include="PlayersReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="PlayerLocation.cs" />
     <Compile Include="Game.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,16 +82,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>58221</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/SpyHeart</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
           <EnableWcfTestClientForSVCDefaultValue>True</EnableWcfTestClientForSVCDefaultValue>
         </WebProjectProperties>
       </FlavorProperties>

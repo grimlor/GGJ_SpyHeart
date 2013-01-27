@@ -16,6 +16,6 @@ namespace SpyHeart
         public Guid GameId { get; set; }
 
         [DataMember]
-        public IList<Player> Players { get; set; }
+        public IList<PlayerLocation> Players { get; set; }
     }
 }
