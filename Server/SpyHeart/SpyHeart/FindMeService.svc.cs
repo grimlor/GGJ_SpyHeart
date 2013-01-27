@@ -80,4 +80,53 @@ namespace SpyHeart
             throw new NotImplementedException();
         }
     }
+	
+	//////////////////////////////////////// Scratchspace: States & Messages //////////////////////////////////////////////////
+	/*
+	 * [Setup Game]
+	 * 		<PlayerGUID> SetupPlayer( string playerDeviceGUID, string username )
+	 * 		<GameGUID> SetupGame( string ownerDeviceGUID, string ownerUsername, string epicenterLat, string epicenterLong, string startTime, string duration )
+	 * [Register Players]
+	 * 		<StartTimes&
+	 * 
+	 * 
+	 **************************************** [Count to 100] **************************************************
+	 * 
+	 * 	Struct: PlayerLocation { playerGUID, playerLatt, playerLong }
+	 * 	
+	 * 	Struct: PlayersReport { targetPlayerGUID, playerLocations[], countdownTime, curGameState, trackersScore, targetScore }
+	 * 	
+	 * 	playersReport CheckIn( string playerGUID, string latt, string long, string curGameState, string newGameState )
+	 * 	{
+	 * 		// Convert string params to actionable data
+	 * 		updatePlayerPosition( playerGUID, latt, long);
+	 * 		switch ( this.state )
+	 * 		{
+	 * 			case COUNT_TO_100: return processCountTo100State( playerGUID, latt, long );
+	 * 			case ACTIVE_HUNT: return processActiveHuntState();
+	 * 			default: // Throw error
+	 * 		}
+	 * 	}
+	 * 	
+	 * 	playersReport processCountTo100State( playerGUID, latt, long ) {
+	 * 		if not game.active {
+	 * 			// Calculate Count to 100 duration timestamp
+	 * 			game.active = true;
+	 * 		}
+	 * 		if isElapsed( duration ) {
+	 * 			// Set game state to Active Hunt.
+	 * 		}
+	 * 		return constructPlayersReport();
+	 * 	}
+	 * 
+	 * 	void updatePlayerPosition( playerGUID, latt, long ) { // Update player position in internal data model }
+	 * 	
+	 * 	playersReport constructPlayersReport() { // Package internal data model for transport }
+	 * 
+	 **************************************** [Active Hunt] **************************************************
+	 * 	
+	 * 	playersReport processActiveHunt( playerGUID, latt, long, curGameState, newGameState )
+	 * 	{
+	 * 	}
+	 */
 }
