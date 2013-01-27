@@ -24,5 +24,7 @@ namespace SpyHeart
 
         [DataMember]
         public int TargetScore;
+
+        public DateTime HunkerDownExpiration;
     }
 }

@@ -7,16 +7,20 @@ namespace SpyHeart
     public interface IGameService
     {
         [OperationContract]
-        [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
+        [WebGet(ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "setup/{password}")]
+        bool Setup(string password);
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "register/{longLat}/{longLng}")]
         PlayerLocation Register(string longLat, string longLng);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", 
-            ResponseFormat = WebMessageFormat.Json, 
-            BodyStyle = WebMessageBodyStyle.Wrapped, 
+        [WebGet(ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "checkIn/{guidPlayerId}/{longLat}/{longLng}/{intGameState}")]
         PlayersReport CheckIn(string guidPlayerId, string longLat, string longLng, string intGameState);
     }
