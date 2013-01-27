@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Locator : MonoBehaviour {
 	
-	private UILabel _displayLabel;
+	private UILabel _commonLabel;
 	private int _maxWait = 20;
 	
 
 	void Start () {
-		_displayLabel = GameObject.Find("Display Label").GetComponent<UILabel>();
-		_displayLabel.text = "";
+		_commonLabel = GameObject.Find("Common Label").GetComponent<UILabel>();
+		_commonLabel.text = "";
 		initializeLocationServices();
 		InvokeRepeating("GetLocation", 5f, 5f);
 	}
@@ -22,7 +22,7 @@ public class Locator : MonoBehaviour {
 	    // First, check if user has location service enabled
 	    if (!Input.location.isEnabledByUser)
 		{
-	     	_displayLabel.text = "Location Service Not Enabled";
+	     	_commonLabel.text = "Location Service Not Enabled";
 			return;
 		}
 	
@@ -37,7 +37,7 @@ public class Locator : MonoBehaviour {
 	
 	    // Service didn't initialize in 20 seconds
 	    if (_maxWait < 1) {
-	        _displayLabel.text = "Location service didn't initialize in 20 seconds";
+	        _commonLabel.text = "Location service didn't initialize in 20 seconds";
 	        return;
 	    }
 		
@@ -48,14 +48,14 @@ public class Locator : MonoBehaviour {
 	private void GetLocation()
 	{
 	    if (Input.location.status == LocationServiceStatus.Failed) {
-	        _displayLabel.text = "Unable to determine device location";
+	        _commonLabel.text = "Unable to determine device location";
 	        return;
 	    }
 	    // Access granted and location value could be retrieved
 	    else {
 	        //_displayLabel.text = 
 				//"Lat: " + Input.location.lastData.latitude + "\n" +
-	            //"Long: " + Input.location.lastData.longitude + "\n" +
+	            //"Long: " + Input.location.lastData.longitude + "\n";// +
 	            //"Alt: " + Input.location.lastData.altitude + "\n" +
 	            //"Accur: " + Input.location.lastData.horizontalAccuracy + "\n" +
 	            //"Time: " + Input.location.lastData.timestamp + "\n" + 
@@ -76,25 +76,30 @@ public class Locator : MonoBehaviour {
         if (Application.internetReachability == NetworkReachability.NotReachable)
             yield break;
 
-        var url = "http://169.254.140.85/SpyHeart/FindMeService/HereIAm/"; //<guidGameId>/<guidUserId>/<longLat>/<longLng>";
+        var url = "http://ggjspyheart2.cloudapp.net/FindMeService.svc/HereIAm/"; //<guidGameId>/<guidUserId>/<longLat>/<longLng>";
         url += "9ef0941f-38c4-448d-ad76-7a8c59837535" + "/";
         url += "6c2711a9-da5b-42da-ad06-21f9fda2c97a" + "/";
 		url += Input.location.lastData.latitude.ToString() + "/";
 		url += Input.location.lastData.longitude.ToString();
-
+		
+		//Debug.Log(url);
         //form.AddField("gh_api_key", gameApiKey);
 
         WWW www = new WWW(url);
         yield return www;
-
+		
+		Debug.Log(www.text);
+		
+		//MiniJSON.jsonDecode(www.text);
+		
         // WWW does not react to HTTP status codes, only transport errors?
         if (www.error != null) // || www.text.Substring(0, 1) != "0")
         {
-            Debug.Log(www);
+            Debug.Log(www.text);
         }
         else 
         {
-			_displayLabel.text = www.ToString();
+			_commonLabel.text = www.text.ToString();
         }
     }	
 }

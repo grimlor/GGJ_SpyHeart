@@ -124,6 +124,7 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\scripts\GameManager.cs" />
      <Compile Include="Assets\scripts\Locator.cs" />
+     <Compile Include="Assets\scripts\MiniJSON.cs" />
      <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\scripts\StartMenu.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Depth.shader" />

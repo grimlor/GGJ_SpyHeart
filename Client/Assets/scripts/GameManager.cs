@@ -3,7 +3,7 @@ using System.Collections;
 
 public static class GameManager {
 	
-	public static bool Target;
+	public static bool Target = false;
 	
 
 }
