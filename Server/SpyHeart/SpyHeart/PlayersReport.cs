@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace SpyHeart
 {
@@ -16,7 +14,7 @@ namespace SpyHeart
         public IList<PlayerLocation> PlayerLocations;
 
         [DataMember]
-        public int CountdownTime;
+        public DateTime StateTimeExpiration;
 
         [DataMember]
         public GameState CurGameState;

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace SpyHeart
 {
     [DataContract]
     public class PlayerLocation
     {
-        public PlayerLocation(Guid userId, long lat, long lng)
+        public PlayerLocation(Guid userId, double lat, double lng)
         {
             UserId = userId;
             Latitude = lat;
@@ -20,9 +17,9 @@ namespace SpyHeart
         public Guid UserId { get; set; }
 
         [DataMember]
-        public long Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [DataMember]
-        public long Longitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

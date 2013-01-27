@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.ServiceModel.Web;
 
 namespace SpyHeart
 {
     [ServiceContract]
-    public interface IFindMeService
+    public interface IGameService
     {
         [OperationContract]
         [WebInvoke(Method = "GET",

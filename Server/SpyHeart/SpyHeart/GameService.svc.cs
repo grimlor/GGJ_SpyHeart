@@ -7,25 +7,33 @@ namespace SpyHeart
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,
         ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class FindMeService : IFindMeService
+    public class GameService : IGameService
     {
         private static PlayersReport _currentGame;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FindMeService"/> class.
+        /// Initializes a new instance of the <see cref="GameService"/> class.
         /// </summary>
-        public FindMeService()
+        public GameService()
         {
-            _currentGame = new PlayersReport { PlayerLocations = new List<PlayerLocation>(), CurGameState = GameState.PreLaunch };
+            _currentGame = new PlayersReport
+            {
+                PlayerLocations = new List<PlayerLocation>(),
+                CurGameState = GameState.PreLaunch
+            };
         }
 
         public PlayerLocation Register(string longLat, string longLng)
         {
-            var lat = long.Parse(longLat);
-            var lng = long.Parse(longLng);
+            var lat = double.Parse(longLat.Replace('d', '.'));
+            var lng = double.Parse(longLng.Replace('d', '.'));
             var playerLocation = new PlayerLocation(Guid.NewGuid(), lat, lng);
 
             _currentGame.PlayerLocations.Add(playerLocation);
+            if (_currentGame.PlayerLocations.Count == 1)
+            {
+                _currentGame.StateTimeExpiration = DateTime.Now.AddMinutes(2);
+            }
 
             return playerLocation;
         }
@@ -33,15 +41,36 @@ namespace SpyHeart
         public PlayersReport CheckIn(string guidPlayerId, string longLat, string longLng, string intGameState)
         {
             var userId = new Guid(guidPlayerId);
-            var lat = long.Parse(longLat);
-            var lng = long.Parse(longLng);
-            var gameState = (GameState)int.Parse(intGameState);
+            var lat = double.Parse(longLat.Replace('d', '.'));
+            var lng = double.Parse(longLng.Replace('d', '.'));
+            var isHunkerDown = (GameState)int.Parse(intGameState) == GameState.HunkerDown;
 
             var playerToUpdate = _currentGame.PlayerLocations.Single(p => p.UserId == userId);
             playerToUpdate.Latitude = lat;
             playerToUpdate.Longitude = lng;
 
-            // check for state change
+            if (DateTime.Now >= _currentGame.StateTimeExpiration)
+            {
+                switch (_currentGame.CurGameState)
+                {
+                    case GameState.PreLaunch:
+                        var random = new Random();
+                        _currentGame.TargetPlayerGuid = _currentGame.PlayerLocations[random.Next()].UserId;
+                        _currentGame.CurGameState = GameState.CountTo100;
+                        _currentGame.StateTimeExpiration = DateTime.Now.AddMinutes(2);
+                        break;
+                    case GameState.CountTo100:
+                        _currentGame.CurGameState = GameState.ActiveHunt;
+                        _currentGame.StateTimeExpiration = DateTime.Now.AddMinutes(2);
+                        break;
+                    case GameState.ActiveHunt:
+                        _currentGame.CurGameState = GameState.GameEnded;
+                        break;
+                    case GameState.HunkerDown:
+                        _currentGame.CurGameState = GameState.ActiveHunt;
+                        break;
+                }
+            }
 
             return _currentGame;
         }
