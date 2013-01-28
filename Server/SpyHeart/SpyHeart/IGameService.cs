@@ -13,6 +13,11 @@ namespace SpyHeart
         bool Setup(string password);
 
         [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Xml,
+            UriTemplate = "viewState/{password}")]
+        PlayersReport ViewState(string password);
+
+        [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "register/{longLat}/{longLng}")]

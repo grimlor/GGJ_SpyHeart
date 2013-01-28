@@ -10,6 +10,7 @@ namespace SpyHeart
     public class GameService : IGameService
     {
         private static PlayersReport _currentGame;
+        private static string _password = "r3s3tGam3";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameService"/> class.
@@ -26,7 +27,7 @@ namespace SpyHeart
         public bool Setup(string password)
         {
             var isGameReset = false;
-            if (password == "r3s3tGam3")
+            if (password == _password)
             {
                 _currentGame = new PlayersReport
                 {
@@ -106,6 +107,11 @@ namespace SpyHeart
             }
 
             return _currentGame;
+        }
+
+        public PlayersReport ViewState(string password)
+        {
+            return password == _password ? _currentGame : null;
         }
     }
 }
